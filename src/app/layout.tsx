@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Work_Sans } from "next/font/google";
 import { metaData } from "./config";
-
 import * as React from "react";
 import { ThemeSwitch } from "./components/ThemeSwitch";
 import { ThemeProvider } from "./components/ThemeProvider";
 import CustomCursor from "./components/custom-cursor";
+import { Navbar } from "./components/navbar";
+import HeaderBar from "./components/header-bar";
 
 const workSans = Work_Sans({
   subsets: ["latin"],
@@ -62,9 +62,17 @@ export default function RootLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </head>
       <body className="antialiased font-sans">
-        <ThemeProvider>
-          <ThemeSwitch />
+        <ThemeProvider defaultTheme="dark">
+          <div className="hidden md:flex fixed p-0 top-3 md:top-3 right-5 z-50 btn-navbar dark:btn-navbar-dark pointer-events-auto">
+            <ThemeSwitch />
+          </div>
           <CustomCursor>
+            <div className=" md:hidden fixed w-full bg-black/10 dark:bg-black/30 backdrop-blur-sm shadow-lg border-b border-grey-100">
+              <HeaderBar />
+            </div>
+            <div className="fixed bottom-4 md:bottom-auto md:top-4 left-1/2 -translate-x-1/2 bg-black/10 dark:bg-black/30 backdrop-blur-md shadow-lg rounded-xl px-1 py-1 border border-white/40">
+              <Navbar />
+            </div>
             <main>{children}</main>
           </CustomCursor>
         </ThemeProvider>

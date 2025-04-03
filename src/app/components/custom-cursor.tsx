@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { useState, useEffect, ReactNode } from "react";
 import { useTheme } from "next-themes";
 
-interface CursorBackgroundProps {
+interface CustomCursorProps {
   children?: ReactNode;
   className?: string;
 }
@@ -13,7 +13,7 @@ interface Position {
   y: number;
 }
 
-const CursorBackground: React.FC<CursorBackgroundProps> = ({
+const CustomCursor: React.FC<CustomCursorProps> = ({
   children,
   className,
   ...props
@@ -64,4 +64,4 @@ const CursorBackground: React.FC<CursorBackgroundProps> = ({
   );
 };
 
-export default CursorBackground;
+export default CustomCursor;
