@@ -60,13 +60,13 @@ const components: { title: string; href: string; description: string }[] = [
 export function Navbar() {
   return (
     <NavigationMenu>
-      <NavigationMenuList className="flex flex-row">
+      <NavigationMenuList className="flex flex-row place-content-around">
         <NavigationMenuItem className="py-2 md:py-1 btn-navbar dark:btn-navbar-dark">
           <Link href="/" legacyBehavior passHref>
             <NavigationMenuLink
               className={`flex flex-row ${navigationMenuTriggerStyle()}`}
             >
-              <FiHome className="place-self-center mr-0 md:mr-2 rotate-animation" />
+              <FiHome className="place-self-center text-[20px] md:text-[16px] mr-0 md:mr-2 rotate-animation" />
               <p className="hidden md:block">Home</p>
             </NavigationMenuLink>
           </Link>
@@ -76,7 +76,7 @@ export function Navbar() {
             <NavigationMenuLink
               className={`flex flex-row ${navigationMenuTriggerStyle()}`}
             >
-              <FiCoffee className="place-self-center mr-0 md:mr-2 rotate-animation" />
+              <FiCoffee className="place-self-center text-[20px] md:text-[16px] mr-0 md:mr-2 rotate-animation" />
               <p className="hidden md:block">Project</p>
             </NavigationMenuLink>
           </Link>
@@ -86,7 +86,7 @@ export function Navbar() {
             <NavigationMenuLink
               className={`flex flex-row ${navigationMenuTriggerStyle()}`}
             >
-              <FiPhone className="place-self-center mr-0 md:mr-2 rotate-animation" />
+              <FiPhone className="place-self-center text-[20px] md:text-[16px] mr-0 md:mr-2 rotate-animation" />
               <p className="hidden md:block">Contact</p>
             </NavigationMenuLink>
           </Link>
@@ -96,7 +96,7 @@ export function Navbar() {
             <NavigationMenuLink
               className={`flex flex-row ${navigationMenuTriggerStyle()}`}
             >
-              <FiUser className="place-self-center mr-0 md:mr-2 rotate-animation" />
+              <FiUser className="place-self-center text-[20px] md:text-[16px] mr-0 md:mr-2 rotate-animation" />
               <p className="hidden md:block">About</p>
             </NavigationMenuLink>
           </Link>
@@ -106,8 +106,8 @@ export function Navbar() {
             <NavigationMenuLink
               className={`flex flex-row ${navigationMenuTriggerStyle()}`}
             >
-              <FiMessageSquare className="place-self-center mr-0 md:mr-2 rotate-animation" />
-              <p className="hidden md:block">Live Chat</p>
+              <FiMessageSquare className="place-self-center text-[20px] md:text-[16px] mr-0 md:mr-2 rotate-animation" />
+              <p className="hidden md:block">Chat Room</p>
             </NavigationMenuLink>
           </Link>
         </NavigationMenuItem>
