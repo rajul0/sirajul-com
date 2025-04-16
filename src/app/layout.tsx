@@ -67,10 +67,10 @@ export default function RootLayout({
             <ThemeSwitch />
           </div>
           <CustomCursor>
-            <div className=" md:hidden z-50 fixed w-full  bg-black/10 dark:bg-black/30 backdrop-blur-sm shadow-lg border-b border-grey-100">
+            <div className="md:hidden z-50 fixed w-full  bg-black/10 dark:bg-black/30 backdrop-blur-sm shadow-lg border-b border-grey-100">
               <HeaderBar />
             </div>
-            <div className="fixed z-50 bottom-4 w-3/5 md:w-2/5 md:bottom-auto md:top-4 left-1/2 -translate-x-1/2 bg-black/10 dark:bg-black/30 backdrop-blur-md shadow-lg rounded-xl px-1 py-1 border border-white/40">
+            <div className="fixed z-50 bottom-4 w-3/5 lg:2/5 md:bottom-auto md:top-4 left-1/2 -translate-x-1/2 bg-black/10 dark:bg-black/30 backdrop-blur-md shadow-lg rounded-xl px-1 py-1 border border-white/40">
               <Navbar />
             </div>
             <main>{children}</main>

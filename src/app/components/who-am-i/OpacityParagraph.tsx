@@ -6,7 +6,6 @@ import {
   useScroll,
   useTransform,
 } from "framer-motion";
-import { space } from "postcss/lib/list";
 
 type OpacityParagraphProps = {
   value: string;
@@ -17,19 +16,16 @@ export default function OpacityParagraph({ value }: OpacityParagraphProps) {
 
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ["start 0.75", "start 0.25"],
+    offset: ["start 0.85", "start 0.40"],
   });
 
   const words = value.split(" ");
 
   return (
-    <p className="flex flex-wrap" ref={ref}>
+    <p className="flex flex-wrap place-content-between" ref={ref}>
       {words.map((word, i) => {
         const start = i / words.length;
         const end = start + 1 / words.length;
-        console.log(word);
-        console.log([start, end]);
-
         return (
           <Word key={i} range={[start, end]} progress={scrollYProgress}>
             {word}
@@ -48,7 +44,7 @@ type WordProps = {
 const Word = ({ children, range, progress }: WordProps) => {
   //
 
-  const opacity = useTransform(progress, range, [0, 1]);
+  const opacity = useTransform(progress, range, [0, 0.85]);
 
   return (
     <span className="relative">

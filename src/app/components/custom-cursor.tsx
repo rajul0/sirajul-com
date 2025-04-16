@@ -1,6 +1,7 @@
 "use client";
+
+import { ReactNode, useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { useState, useEffect, ReactNode } from "react";
 import { useTheme } from "next-themes";
 
 interface CustomCursorProps {
@@ -13,11 +14,7 @@ interface Position {
   y: number;
 }
 
-const CustomCursor: React.FC<CustomCursorProps> = ({
-  children,
-  className,
-  ...props
-}) => {
+const CustomCursor: React.FC<CustomCursorProps> = ({ children, className }) => {
   const [position, setPosition] = useState<Position>({ x: 0, y: 0 });
   const { theme, resolvedTheme } = useTheme();
   const [currentTheme, setCurrentTheme] = useState<string | null>(null);
@@ -27,25 +24,27 @@ const CustomCursor: React.FC<CustomCursorProps> = ({
     setCurrentTheme(storedTheme || resolvedTheme || "light");
   }, [theme, resolvedTheme]);
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    setPosition({ x: e.clientX, y: e.clientY });
-  };
+  // Update mouse position globally
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      setPosition({ x: e.clientX, y: e.clientY });
+    };
+
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, []);
 
   return (
-    <div
-      className={`w-screen h-screen relative transition-colors bg-transparent ${className}`}
-      onMouseMove={handleMouseMove}
-      {...props}
-    >
+    <>
       {/* Cursor-Following Circle */}
       <motion.div
-        className={`absolute rounded-full opacity-50 pointer-events-none ${
+        className={`fixed top-0 left-0 z-1 pointer-events-none rounded-full opacity-50 ${
           currentTheme === "dark" ? "bg-[#75FAD6]" : "bg-yellow-500"
         }`}
         animate={{
-          x: position.x - 40,
-          y: position.y - 40,
-          scale: 5, // Ukuran div menjadi lebih besar (spread)
+          x: position.x - 35,
+          y: position.y - 35,
+          scale: 5,
         }}
         transition={{
           type: "spring",
@@ -53,14 +52,15 @@ const CustomCursor: React.FC<CustomCursorProps> = ({
           damping: 10,
         }}
         style={{
-          width: "70px", // Ukuran awal div
-          height: "70px", // Ukuran awal div
-          filter: "blur(45px)", // Efek blur
+          width: "70px",
+          height: "70px",
+          filter: "blur(45px)",
         }}
       />
-      {/* Children Elements */}
-      <div className="relative z-10 transition-colors">{children}</div>
-    </div>
+
+      {/* Page Content */}
+      <div className={`relative w-screen ${className}`}>{children}</div>
+    </>
   );
 };
 
