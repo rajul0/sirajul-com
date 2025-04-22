@@ -61,7 +61,10 @@ export default function RootLayout({
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </head>
-      <body className="antialiased font-sans">
+      <body
+        data-scroll-container
+        className="antialiased font-sans scroll-smooth"
+      >
         <ThemeProvider defaultTheme="dark">
           <div className="hidden md:flex fixed p-0 top-3 md:top-3 right-5 z-50 btn-navbar dark:btn-navbar-dark pointer-events-auto">
             <ThemeSwitch />

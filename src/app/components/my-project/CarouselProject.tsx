@@ -1,67 +1,43 @@
 "use client";
-
 import {
   animate,
   motion,
   MotionValue,
   useMotionValue,
-  useMotionValueEvent,
   useScroll,
 } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
+import ProjectCard, { Project } from "./ProjectCard";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "@/lib/firebase";
 
-const cards = [
-  {
-    id: 1,
-    title: "Project Alpha",
-    description: "Desain dashboard modern dengan animasi interaktif.",
-    techStack: ["NextJS", "TypeScript", "ShadcnUI", "TailwindCSS"],
-    image: "/images/project.png",
-  },
-  {
-    id: 2,
-    title: "Project Alpha",
-    description: "Desain dashboard modern dengan animasi interaktif.",
-    techStack: ["NextJS", "TypeScript", "ShadcnUI", "TailwindCSS"],
-    image: "/images/project.png",
-  },
-  {
-    id: 3,
-    title: "Project Alpha",
-    description: "Desain dashboard modern dengan animasi interaktif.",
-    techStack: ["NextJS", "TypeScript", "ShadcnUI", "TailwindCSS"],
-    image: "/images/project.png",
-  },
-  {
-    id: 4,
-    title: "Project Alpha",
-    description: "Desain dashboard modern dengan animasi interaktif.",
-    techStack: ["NextJS", "TypeScript", "ShadcnUI", "TailwindCSS"],
-    image: "/images/project.png",
-  },
-  {
-    id: 5,
-    title: "Project Alpha",
-    description: "Desain dashboard modern dengan animasi interaktif.",
-    techStack: ["NextJS", "TypeScript", "ShadcnUI", "TailwindCSS"],
-    image: "/images/project.png",
-  },
-  {
-    id: 6,
-    title: "Project Alpha",
-    description: "Desain dashboard modern dengan animasi interaktif.",
-    techStack: ["NextJS", "TypeScript", "ShadcnUI", "TailwindCSS"],
-    image: "/images/project.png",
-  },
-];
-
-export default function ScrollLinked() {
+export default function CarouselProject() {
   const ref = useRef<HTMLUListElement>(null);
   const { scrollXProgress } = useScroll({ container: ref });
   const [atStart, setAtStart] = useState(true);
   const [atEnd, setAtEnd] = useState(false);
   const maskImage = useScrollOverflowMask(scrollXProgress, atStart, atEnd);
+  const [cards, setCards] = useState<Project[]>([]);
+
+  useEffect(() => {
+    const fetchProjects = async () => {
+      const querySnapshot = await getDocs(collection(db, "project"));
+      const data = querySnapshot.docs.map((doc, i) => {
+        const d = doc.data();
+        return {
+          id: i + 1,
+          title: d.title,
+          description: d.description,
+          image: d.image,
+          techStack: d.tech_stack, // mapping manual karena field berbeda
+        } as Project;
+      });
+      setCards(data);
+    };
+
+    fetchProjects();
+  }, []);
 
   useEffect(() => {
     const el = ref.current;
@@ -115,38 +91,7 @@ export default function ScrollLinked() {
         className="flex overflow-x-scroll gap-5 px-4 py-5 list-none snap-x snap-mandatory touch-pan-x scroll-smooth scrollbar-none scrollbar-hide"
       >
         {cards.map((item) => (
-          <li
-            key={item.id}
-            className="flex-none w-[200px] lg:w-[240px] rounded-xl overflow-hidden dark:bg-[#0f172a] text-white snap-center shadow-lg hover:shadow-xl transition-shadow"
-          >
-            <div className="min-h-fit bg-gradient-to-br from-white via-gray-100 to-white flex items-center justify-center">
-              <img
-                src={item.image}
-                alt={item.title}
-                className="w-64 h-48 object-cover"
-              />
-            </div>
-
-            <div className="p-4 space-y-2">
-              <h3 className="font-semibold text-black dark:text-white text-base">
-                {item.title}
-              </h3>
-              <p className="text-sm text-gray-500 dark:text-gray-400 line-clamp-2">
-                {item.description}
-              </p>
-
-              <div className="flex flex-wrap gap-2 mt-3">
-                {item.techStack.map((tech, i) => (
-                  <span
-                    key={i}
-                    className="bg-slate-800 text-xs text-slate-200 px-2 py-0.5 rounded-full"
-                  >
-                    {tech}
-                  </span>
-                ))}
-              </div>
-            </div>
-          </li>
+          <ProjectCard key={item.id} item={item} />
         ))}
       </motion.ul>
     </div>
