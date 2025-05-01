@@ -1,5 +1,5 @@
 import * as React from "react";
-import { ThemeSwitch } from "./ThemeSwitch";
+import { ThemeSwitch } from "../organisms/ThemeSwitch";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 export default function HeaderBar() {

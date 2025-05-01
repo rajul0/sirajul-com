@@ -17,7 +17,7 @@ import {
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 
-export function Navbar() {
+export default function Navbar() {
   return (
     <NavigationMenu>
       <NavigationMenuList className="flex flex-row place-content-around">
@@ -32,7 +32,7 @@ export function Navbar() {
           </Link>
         </NavigationMenuItem>
         <NavigationMenuItem className="py-2 md:py-1 btn-navbar dark:btn-navbar-dark">
-          <Link href="/docs" legacyBehavior passHref>
+          <Link href="/my-project" legacyBehavior passHref>
             <NavigationMenuLink
               className={`flex flex-row ${navigationMenuTriggerStyle()}`}
             >

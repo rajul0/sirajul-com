@@ -1,4 +1,3 @@
-"use client";
 import {
   animate,
   motion,
@@ -30,7 +29,7 @@ export default function CarouselProject() {
           title: d.title,
           description: d.description,
           image: d.image,
-          techStack: d.tech_stack, // mapping manual karena field berbeda
+          techStack: d.tech_stack,
         } as Project;
       });
       setCards(data);
@@ -52,7 +51,7 @@ export default function CarouselProject() {
     handleScroll(); // initial
     el.addEventListener("scroll", handleScroll);
     return () => el.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [cards.length]);
 
   const scroll = (direction: "left" | "right") => {
     if (ref.current) {
