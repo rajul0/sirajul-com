@@ -12,7 +12,7 @@ import {
 import { useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { FiArrowRight } from "react-icons/fi";
-import ToolsAnimate from "./Tools-Animate";
+import ToolsAnimate from "./ToolsAnimate";
 
 const cards = [
   { title: "Next.js" },
@@ -54,7 +54,7 @@ export default function MyTools() {
           animate={controls}
           className="text-base md:text-xl text-justify"
         >
-          <h1 className="text-xl md:mb-4 md:text-[30px] font-bold opacity-80">
+          <h1 className="text-2xl md:mb-4 md:text-[30px] font-bold opacity-90">
             Tools I've Used
           </h1>
         </motion.div>

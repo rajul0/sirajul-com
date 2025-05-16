@@ -1,4 +1,4 @@
-import { db } from "@/lib/firebase";
+import { db } from "@/lib/firebase/firebase";
 import { collection, getDocs } from "firebase/firestore";
 import { motion, useMotionValue, animate } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
@@ -53,8 +53,8 @@ export default function ToolsAnimate() {
       }}
       className="w-full bg-transparent overflow-hidden relative"
     >
-      <SkillScroller skills={mergedSkills1} reverse={true} duration={30} />
-      <SkillScroller skills={mergedSkills2} reverse={false} duration={30} />
+      <SkillScroller skills={mergedSkills1} reverse={true} duration={60} />
+      <SkillScroller skills={mergedSkills2} reverse={false} duration={60} />
     </motion.div>
   );
 }

@@ -4,8 +4,10 @@ import { motion, useAnimation, useInView } from "framer-motion";
 import { FiArrowRight } from "react-icons/fi";
 import { Button } from "@/components/ui/button";
 import CarouselProject from "./CarouselProject";
+import { useRouter } from "next/navigation";
 
 export default function MyProject() {
+  const router = useRouter();
   const ref = useRef(null);
   const inView = useInView(ref, { amount: 0.4 });
   const controls = useAnimation();
@@ -36,7 +38,7 @@ export default function MyProject() {
           animate={controls}
           className="text-base md:text-xl text-justify"
         >
-          <h1 className="text-xl md:mb-4 md:text-[30px] font-bold opacity-80">
+          <h1 className="text-2xl md:mb-4 md:text-[30px] font-semibold opacity-90">
             The Projects that I've made
           </h1>
         </motion.div>
@@ -59,9 +61,10 @@ export default function MyProject() {
         >
           <Button
             variant="ghost"
-            className="opacity-90 text-base md:text-lg hover:bg-black/5 dark:hover:bg-gray-600/50 "
+            onClick={() => router.push("/projects")}
+            className="hidden md:flex opacity-90 text-base md:text-lg hover:bg-black/5 dark:hover:bg-gray-600/50 "
           >
-            <p className="">View all</p>
+            <p>View all</p>
             <FiArrowRight className="text-black dark:text-white" />
           </Button>
         </motion.div>
@@ -81,7 +84,7 @@ export default function MyProject() {
         }}
         initial="hidden"
         animate={controls}
-        className="max-w-full"
+        className="max-w-full overflow-y-auto"
       >
         <CarouselProject />
       </motion.div>

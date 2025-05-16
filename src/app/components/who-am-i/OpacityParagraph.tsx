@@ -22,17 +22,23 @@ export default function OpacityParagraph({ value }: OpacityParagraphProps) {
   const words = value.split(" ");
 
   return (
-    <p className="flex flex-wrap place-content-between" ref={ref}>
-      {words.map((word, i) => {
-        const start = i / words.length;
-        const end = start + 1 / words.length;
-        return (
-          <Word key={i} range={[start, end]} progress={scrollYProgress}>
-            {word}
-          </Word>
-        );
-      })}
-    </p>
+    <>
+      <p
+        className="hidden md:flex flex-wrap place-content-between text-lg"
+        ref={ref}
+      >
+        {words.map((word, i) => {
+          const start = i / words.length;
+          const end = start + 1 / words.length;
+          return (
+            <Word key={i} range={[start, end]} progress={scrollYProgress}>
+              {word}
+            </Word>
+          );
+        })}
+      </p>
+      <p className="md:hidden text-lg line-clamp-[10]">{value}</p>
+    </>
   );
 }
 

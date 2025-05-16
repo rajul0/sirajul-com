@@ -9,7 +9,7 @@ import { useEffect, useRef, useState } from "react";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import ProjectCard, { Project } from "./ProjectCard";
 import { collection, getDocs } from "firebase/firestore";
-import { db } from "@/lib/firebase";
+import { db } from "@/lib/firebase/firebase";
 
 export default function CarouselProject() {
   const ref = useRef<HTMLUListElement>(null);
@@ -26,6 +26,7 @@ export default function CarouselProject() {
         const d = doc.data();
         return {
           id: i + 1,
+          cname: d.cname,
           title: d.title,
           description: d.description,
           image: d.image,
@@ -64,7 +65,7 @@ export default function CarouselProject() {
   };
 
   return (
-    <div className="relative max-w-full w-screen mx-auto">
+    <div className="relative max-w-full w-screen mx-auto overflow-y-auto">
       {!atStart && (
         <button
           onClick={() => scroll("left")}
@@ -87,7 +88,7 @@ export default function CarouselProject() {
       <motion.ul
         ref={ref}
         style={{ maskImage }}
-        className="flex overflow-x-scroll gap-5 px-4 py-5 list-none snap-x snap-mandatory touch-pan-x scroll-smooth scrollbar-none scrollbar-hide"
+        className="flex overflow-x-auto snap-x touch-y gap-5 px-4 py-5 list-none snap-x snap-mandatory scroll-smooth scrollbar-none scrollbar-hide"
       >
         {cards.map((item) => (
           <ProjectCard key={item.id} item={item} />

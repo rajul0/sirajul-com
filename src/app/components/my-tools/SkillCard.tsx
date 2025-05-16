@@ -19,7 +19,7 @@ export default function SkillCard({ title, logo }: SkillCardProps) {
           )}
         </div>
       )}
-      <span className="text-sm">{title}</span>
+      <span className="text-base">{title}</span>
     </div>
   );
 }

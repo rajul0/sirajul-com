@@ -4,7 +4,7 @@ import { Work_Sans } from "next/font/google";
 import { metaData } from "./config";
 import * as React from "react";
 import { ThemeSwitch } from "../components/organisms/ThemeSwitch";
-import { ThemeProvider } from "../components/organisms/ThemeProvider";
+import { ThemeProvider } from "../providers/ThemeProvider";
 import CustomCursor from "../components/organisms/CustomCursor";
 import Navbar from "@/components/organisms/Navbar";
 import HeaderBar from "@/components/molecules/HeaderBar";
@@ -65,7 +65,7 @@ export default function RootLayout({
         data-scroll-container
         className="antialiased font-sans scroll-smooth"
       >
-        <PageTransitionLoader /> {/* ← Tambah ini */}
+        <PageTransitionLoader />
         <ThemeProvider defaultTheme="dark">
           <div className="hidden md:flex fixed p-0 top-3 md:top-3 right-5 z-50 btn-navbar dark:btn-navbar-dark pointer-events-auto">
             <ThemeSwitch />
@@ -74,7 +74,7 @@ export default function RootLayout({
             <div className="md:hidden z-50 fixed w-full bg-black/10 dark:bg-black/30 backdrop-blur-sm shadow-lg border-b border-grey-100">
               <HeaderBar />
             </div>
-            <div className="fixed z-50 bottom-4 w-3/5 lg:2/5 md:bottom-auto md:top-4 left-1/2 -translate-x-1/2 bg-black/10 dark:bg-black/30 backdrop-blur-md shadow-lg rounded-xl px-1 py-1 border border-white/40">
+            <div className="fixed z-50 bottom-4 w-3/5 lg:2/5 md:bottom-auto md:top-4 left-1/2 -translate-x-1/2 ">
               <Navbar />
             </div>
             <main>{children}</main>

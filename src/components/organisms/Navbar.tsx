@@ -1,3 +1,5 @@
+"use client";
+
 import * as React from "react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
@@ -8,7 +10,6 @@ import {
   FiCoffee,
   FiMessageSquare,
 } from "react-icons/fi";
-
 import {
   NavigationMenu,
   NavigationMenuItem,
@@ -16,12 +17,25 @@ import {
   NavigationMenuList,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
+import { usePathname } from "next/navigation";
 
 export default function Navbar() {
+  const pathname = usePathname();
+
+  const isNavbarHidden = pathname.startsWith("/projects/"); // Menyembunyikan navbar di halaman tertentu (misalnya: "/projects/[cname]")
+
+  if (isNavbarHidden) return null; // Jika di halaman yang tidak perlu navbar, maka tidak dirender.
+
   return (
-    <NavigationMenu>
+    <NavigationMenu className="bg-black/10 dark:bg-black/30 backdrop-blur-md shadow-lg rounded-xl px-1 py-1 border border-white/40">
       <NavigationMenuList className="flex flex-row place-content-around">
-        <NavigationMenuItem className="py-2 md:py-1 btn-navbar dark:btn-navbar-dark">
+        <NavigationMenuItem
+          className={`py-2 md:py-1 btn-navbar dark:btn-navbar-dark  ${
+            pathname === "/"
+              ? "btn-navbar-selected dark:btn-navbar-dark-selected"
+              : ""
+          }`}
+        >
           <Link href="/" legacyBehavior passHref>
             <NavigationMenuLink
               className={`flex flex-row ${navigationMenuTriggerStyle()}`}
@@ -31,8 +45,14 @@ export default function Navbar() {
             </NavigationMenuLink>
           </Link>
         </NavigationMenuItem>
-        <NavigationMenuItem className="py-2 md:py-1 btn-navbar dark:btn-navbar-dark">
-          <Link href="/my-project" legacyBehavior passHref>
+        <NavigationMenuItem
+          className={`py-2 md:py-1 btn-navbar dark:btn-navbar-dark  ${
+            pathname === "/projects"
+              ? "btn-navbar-selected dark:btn-navbar-dark-selected"
+              : ""
+          }`}
+        >
+          <Link href="/projects" legacyBehavior passHref>
             <NavigationMenuLink
               className={`flex flex-row ${navigationMenuTriggerStyle()}`}
             >
@@ -41,8 +61,14 @@ export default function Navbar() {
             </NavigationMenuLink>
           </Link>
         </NavigationMenuItem>
-        <NavigationMenuItem className="py-2 md:py-1 btn-navbar dark:btn-navbar-dark">
-          <Link href="/docs" legacyBehavior passHref>
+        <NavigationMenuItem
+          className={`py-2 md:py-1 btn-navbar dark:btn-navbar-dark  ${
+            pathname === "/contact"
+              ? "btn-navbar-selected dark:btn-navbar-dark-selected"
+              : ""
+          }`}
+        >
+          <Link href="/contact" legacyBehavior passHref>
             <NavigationMenuLink
               className={`flex flex-row ${navigationMenuTriggerStyle()}`}
             >
@@ -51,8 +77,14 @@ export default function Navbar() {
             </NavigationMenuLink>
           </Link>
         </NavigationMenuItem>
-        <NavigationMenuItem className="py-2 md:py-1 btn-navbar dark:btn-navbar-dark">
-          <Link href="/docs" legacyBehavior passHref>
+        <NavigationMenuItem
+          className={`py-2 md:py-1 btn-navbar dark:btn-navbar-dark  ${
+            pathname === "/about"
+              ? "btn-navbar-selected dark:btn-navbar-dark-selected"
+              : ""
+          }`}
+        >
+          <Link href="/about" legacyBehavior passHref>
             <NavigationMenuLink
               className={`flex flex-row ${navigationMenuTriggerStyle()}`}
             >
@@ -61,8 +93,14 @@ export default function Navbar() {
             </NavigationMenuLink>
           </Link>
         </NavigationMenuItem>
-        <NavigationMenuItem className="py-2 md:py-1 btn-navbar dark:btn-navbar-dark">
-          <Link href="/docs" legacyBehavior passHref>
+        <NavigationMenuItem
+          className={`py-2 md:py-1 btn-navbar dark:btn-navbar-dark  ${
+            pathname === "/chat-room"
+              ? "btn-navbar-selected dark:btn-navbar-dark-selected"
+              : ""
+          }`}
+        >
+          <Link href="/chat-room" legacyBehavior passHref>
             <NavigationMenuLink
               className={`flex flex-row ${navigationMenuTriggerStyle()}`}
             >

@@ -100,12 +100,25 @@
     outline: 1px solid rgba(255, 255, 255, 0.4);
     border-radius: 8px;
   }
+
+  .btn-navbar-selected {
+    background-color: rgba(255, 255, 255, 0.1);
+    outline: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+  }
+  .btn-navbar-dark-selected {
+    background-color: rgba(255, 255, 255, 0.05);
+    outline: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 8px;
+  }
 }
 
 .rotate-animation {
-  transition: transform 0.3s ease-in-out; /* Transisi untuk rotasi yang halus */
+  transition: transform 0.3s ease-in-out;
 }
 
-.btn-navbar:hover .rotate-animation {
-  transform: rotate(-17deg); /* Rotasi ikon 17 derajat */
+@media (hover: hover) and (pointer: fine) {
+  .btn-navbar:hover .rotate-animation {
+    transform: rotate(-17deg);
+  }
 }

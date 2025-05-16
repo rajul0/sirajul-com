@@ -7,7 +7,7 @@ import Divider from "@/components/atoms/Divider";
 
 export default function Home() {
   return (
-    <div className="w-full px-2 md:px-16 lg:px-32 ">
+    <div className="w-full px-6 md:px-16 lg:px-32">
       <div className="h-20 md:hidden"></div>
       <Hero />
       <WhoAmI />
