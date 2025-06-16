@@ -8,6 +8,12 @@ import { Icons } from "@/components/icons";
 import { MdOutlineLink } from "react-icons/md";
 import { FaArrowCircleRight } from "react-icons/fa";
 import { Project } from "@/types";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 interface CardProjectV2Props {
   item: Project;
@@ -15,7 +21,10 @@ interface CardProjectV2Props {
 
 export const CardProjectV2 = ({ item }: CardProjectV2Props) => {
   return (
-    <li key={item.id} className="group list-none relative">
+    <li
+      key={item.cname}
+      className="group list-none relative transition-transform duration-300 ease-out hover:scale-105"
+    >
       <motion.div
         initial={{ opacity: 0, y: 40, x: 10, scale: 0.15 }}
         animate={{ opacity: 1, y: 0, x: 0, scale: 1 }}
@@ -34,36 +43,58 @@ export const CardProjectV2 = ({ item }: CardProjectV2Props) => {
             {item.description}
           </p>
           <div className="h-5"></div>
-          <div className="flex flex-wrap gap-2 mt-2 md:bottom-4">
-            {item.techStack.map((tech, i) => (
-              <Image
-                key={i}
-                src={`/logos/${tech}.svg`}
-                alt={tech}
-                width={0}
-                height={0}
-                className="w-6 h-6 md:w-[25px] md:h-[25px] lg:w-[30px] lg:h-[30px] object-contain"
-              />
-            ))}
-          </div>
+          <TooltipProvider>
+            <div className="flex flex-wrap gap-2 mt-2 md:bottom-4">
+              {item.techStack.map((tech, i) => (
+                <Tooltip key={i}>
+                  <TooltipTrigger asChild>
+                    <Image
+                      key={i}
+                      src={tech.imageUrl}
+                      alt={tech.label}
+                      width={0}
+                      height={0}
+                      className="w-6 h-6 md:w-[25px] md:h-[25px] lg:w-[30px] lg:h-[30px] object-contain"
+                    />
+                  </TooltipTrigger>
+                  <TooltipContent className="bg-gray-400 dark:bg-white">
+                    <p>{tech.label}</p>
+                  </TooltipContent>
+                </Tooltip>
+              ))}
+            </div>
+          </TooltipProvider>
 
           <div className="hidden md:flex flex-wrap gap-4 absolute bottom-4 md:bottom-8">
-            <Link
-              href={item.linkSC}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-gray-200 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white transition-colors"
-            >
-              <Icons.gitHub className="w-12 h-12 stroke-current" />
-            </Link>
-            <Link
-              href={item.liveDemo}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex rounded-full items-center gap-2 bg-gray-200 hover:bg-gray-900 dark:bg-gray-400 dark:hover:bg-white transition-colors "
-            >
-              <MdOutlineLink className="w-12 h-12 stroke-current text-white dark:text-slate-800" />
-            </Link>
+            {item.linkSC ? (
+              <Link
+                href={item.linkSC}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-gray-200 hover:text-slate-800 dark:text-gray-400 dark:hover:text-white transition-colors"
+              >
+                <Icons.gitHub className="w-12 h-12 stroke-current" />
+              </Link>
+            ) : (
+              <span className="inline-flex items-center gap-2 text-gray-400 cursor-not-allowed opacity-50">
+                <Icons.gitHub className="w-12 h-12 stroke-current" />
+              </span>
+            )}
+
+            {item.liveDemo ? (
+              <Link
+                href={item.liveDemo}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex rounded-full items-center gap-2 bg-gray-200 hover:bg-gray-900 dark:bg-gray-400 dark:hover:bg-white transition-colors"
+              >
+                <MdOutlineLink className="w-12 h-12 stroke-current text-white dark:text-slate-800" />
+              </Link>
+            ) : (
+              <span className="inline-flex items-center gap-2 bg-gray-400 rounded-full cursor-not-allowed opacity-50">
+                <MdOutlineLink className="w-12 h-12 text-white dark:text-slate-800" />
+              </span>
+            )}
           </div>
         </div>
 
@@ -72,13 +103,15 @@ export const CardProjectV2 = ({ item }: CardProjectV2Props) => {
             <Image
               src={item.image}
               alt={item.title}
+              priority
               fill
-              className="object-cover md:rounded-tl-xl max-md:group-hover:blur-sm"
+              sizes="1"
+              className="object-cover md:rounded-tl-xl md:group-hover:blur-sm"
             />
           </div>
           <motion.div
             initial={false}
-            className="absolute inset-0 flex md:hidden flex-row items-center justify-center opacity-0 translate-y-10 translate-x-[70px] group-hover:translate-y-0 group-hover:opacity-100 group-hover:translate-x-[70px] transition-all duration-300"
+            className="absolute inset-0 flex flex-row items-center justify-center opacity-0 translate-y-10 lg:translate-y-[50px] translate-x-[70px] group-hover:translate-y-0 lg:group-hover:translate-y-[50px] group-hover:translate-x-[70px] lg:group-hover:translate-x-[300px] group-hover:opacity-100  transition-all duration-300"
           >
             <div className="px-4 py-2 rounded-full text-white text-sm font-semibold flex flex-row gap-x-5 place-items-center">
               View detail

@@ -1,16 +1,14 @@
+import { Project } from "@/types";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { FaArrowCircleRight } from "react-icons/fa";
-
-export type Project = {
-  id: number;
-  cname: string;
-  title: string;
-  description: string;
-  image: string;
-  techStack: string[];
-};
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 type ProjectCardProps = {
   item: Project;
@@ -20,14 +18,14 @@ export default function ProjectCard({ item }: ProjectCardProps) {
   return (
     <Link href={`/projects/${item.cname}`}>
       <li
-        key={item.id}
-        className="group relative flex-none w-[250px]  rounded-xl overflow-hidden bg-transparent text-white snap-center shadow-lg hover:shadow-xl transition-shadow"
+        key={item.cname}
+        className="group relative flex-none w-[250px] rounded-xl overflow-hidden bg-transparent text-white snap-center shadow-lg hover:scale-105 transition-transform duration-300 ease-in-out  transition-shadow"
       >
         <div className="min-h-fit bg-transparent from-white via-gray-100 to-white flex items-center justify-center">
           <img
             src={item.image}
             alt={item.title}
-            className="w-full object-cover group-hover:blur-sm transition-all duration-300"
+            className="w-full h-[230px] object-cover group-hover:blur-sm transition-all duration-300"
           />
         </div>
 
@@ -50,16 +48,23 @@ export default function ProjectCard({ item }: ProjectCardProps) {
           </p>
 
           <div className="flex flex-wrap gap-2 mt-3">
-            {item.techStack.map((tech: string, i: number) => (
-              <Image
-                key={i}
-                className="text-black dark:text-white"
-                src={`/logos/${tech}.svg`}
-                alt="Tech Logo"
-                width={20}
-                height={20}
-              />
-            ))}
+            <TooltipProvider>
+              {item.techStack.map((tech, i) => (
+                <Tooltip key={i}>
+                  <TooltipTrigger asChild>
+                    <Image
+                      src={tech.imageUrl}
+                      alt={tech.label}
+                      width={20}
+                      height={20}
+                    />
+                  </TooltipTrigger>
+                  <TooltipContent className="bg-gray-400 dark:bg-white">
+                    <p>{tech.label}</p>
+                  </TooltipContent>
+                </Tooltip>
+              ))}
+            </TooltipProvider>
           </div>
         </div>
       </li>

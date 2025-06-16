@@ -1,48 +1,20 @@
-import { db } from "@/lib/firebase/firebase";
-import { collection, getDocs } from "firebase/firestore";
-import { motion, useMotionValue, animate } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
+import { motion, useMotionValue, animate } from "framer-motion";
+import { MY_PROFILE } from "@/data/profile"; // ambil dari MY_PROFILE
 import SkillCard from "./SkillCard";
-
-const cards = [
-  { title: "Next.js" },
-  { title: "Tailwind CSS" },
-  { title: "React" },
-  { title: "TypeScript" },
-  { title: "Firebase" },
-  { title: "Framer Motion" },
-];
+import { Stack } from "@/types";
 
 export default function ToolsAnimate() {
-  const [mergedSkills1, setMergedSkills1] = useState<string[]>([]);
-  const [mergedSkills2, setMergedSkills2] = useState<string[]>([]);
+  const [mergedSkills1, setMergedSkills1] = useState<Stack[]>([]);
+  const [mergedSkills2, setMergedSkills2] = useState<Stack[]>([]);
 
   const maskImage = useMaskImage();
+
   useEffect(() => {
-    const fetchSkill = async () => {
-      const querySnapshot = await getDocs(collection(db, "skill"));
-
-      const tempSkills1: string[] = [];
-      const tempSkills2: string[] = [];
-
-      querySnapshot.forEach((doc) => {
-        const data = doc.data();
-        tempSkills1.push(
-          ...(data.web_skill || []),
-          ...(data.mobile_skill || [])
-        );
-        tempSkills2.push(
-          ...(data.desktop_skill || []),
-          ...(data.database_skill || []),
-          ...(data.iot_skill || [])
-        );
-      });
-
-      setMergedSkills1(tempSkills1);
-      setMergedSkills2(tempSkills2);
-    };
-
-    fetchSkill();
+    const stacks = MY_PROFILE.techStack;
+    const half = Math.ceil(stacks.length / 2);
+    setMergedSkills1(stacks.slice(0, half));
+    setMergedSkills2(stacks.slice(half));
   }, []);
 
   return (
@@ -77,7 +49,7 @@ function useMaskImage() {
 }
 
 interface SkillScrollerProps {
-  skills: string[];
+  skills: Stack[];
   reverse?: boolean;
   duration?: number;
 }
@@ -92,7 +64,7 @@ function SkillScroller({
 
   useEffect(() => {
     if (containerRef.current) {
-      const totalWidth = containerRef.current.scrollWidth / 2; // isi diduplikasi
+      const totalWidth = containerRef.current.scrollWidth / 2;
       setScrollDistance(totalWidth);
     }
   }, [skills]);
@@ -110,14 +82,10 @@ function SkillScroller({
           ease: "linear",
           duration,
         }}
-        className="flex py-2 gap-4 whitespace-nowrap "
+        className="flex py-2 gap-4 whitespace-nowrap"
       >
         {[...skills, ...skills].map((skill, i) => (
-          <SkillCard
-            key={i}
-            title={skill}
-            logo={`/logos/${skill.toLowerCase()}.svg`}
-          />
+          <SkillCard key={i} title={skill.label} logo={skill.imageUrl} />
         ))}
       </motion.div>
     </div>

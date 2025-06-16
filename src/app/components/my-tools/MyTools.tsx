@@ -14,15 +14,6 @@ import { Button } from "@/components/ui/button";
 import { FiArrowRight } from "react-icons/fi";
 import ToolsAnimate from "./ToolsAnimate";
 
-const cards = [
-  { title: "Next.js" },
-  { title: "Tailwind CSS" },
-  { title: "React" },
-  { title: "TypeScript" },
-  { title: "Firebase" },
-  { title: "Framer Motion" },
-];
-
 export default function MyTools() {
   const ref = useRef(null);
   const inView = useInView(ref, { amount: 0.4 });
@@ -45,8 +36,7 @@ export default function MyTools() {
               opacity: 1,
               x: 0,
               transition: {
-                duration: 0.8,
-                ease: [0.25, 0.6, 0.3, 1],
+                duration: 1,
               },
             },
           }}
@@ -54,7 +44,7 @@ export default function MyTools() {
           animate={controls}
           className="text-base md:text-xl text-justify"
         >
-          <h1 className="text-2xl md:mb-4 md:text-[30px] font-bold opacity-90">
+          <h1 className="text-xl md:text-2xl md:mb-4 md:text-[30px] font-bold opacity-90">
             Tools I've Used
           </h1>
         </motion.div>
@@ -62,14 +52,12 @@ export default function MyTools() {
       <motion.div
         ref={ref}
         variants={{
-          hidden: { opacity: 0, y: 150 },
+          hidden: { opacity: 0, y: 100 },
           visible: {
             opacity: 1,
             y: 0,
             transition: {
-              duration: 1,
-              ease: [0.25, 0.6, 0.3, 1],
-              delay: 0.5,
+              duration: 0.5,
             },
           },
         }}

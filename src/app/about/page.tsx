@@ -1,24 +1,35 @@
 "use client";
 
+import { Divider } from "@/components/atoms";
+import { Heading } from "@/components/molecules";
 import { motion } from "framer-motion";
+import TabsAbout from "./components/TabsAbout";
 
 export default function About() {
   return (
-    <div className="flex min-h-screen items-center justify-center px-4">
+    <section className="w-full px-5 mb-16 md:px-16 lg:px-32">
+      <div className="h-16"></div>
+      <Heading
+        title="About"
+        description="A brief view into my world — because every piece of me tells a story worth sharing."
+      />
+      <Divider className="my-4 md:my-5 lg:mt-5 lg:mb-10" />
       <motion.div
-        initial={{ opacity: 0, scale: 0.95, y: 20 }}
-        animate={{ opacity: 1, scale: 1, y: 0 }}
-        transition={{ duration: 0.6, ease: [0.25, 0.8, 0.25, 1] }}
-        className="text-center space-y-4 p-8 bg-white/5 backdrop-blur-lg border border-white/10 rounded-xl shadow-lg"
+        variants={{
+          hidden: { opacity: 0, y: 100 },
+          visible: {
+            opacity: 1,
+            y: 0,
+            transition: {
+              duration: 0.5,
+            },
+          },
+        }}
+        initial="hidden"
+        animate="visible"
       >
-        <h1 className="text-3xl md:text-4xl font-bold">
-          🚧 Under Development "About Page"
-        </h1>
-        <p className="justify-self-center max-w-lg text-center text-gray-600 dark:text-gray-300 ">
-          Halaman ini sedang dalam tahap pengembangan. Silakan kembali lagi
-          nanti. Kami sedang menyiapkan sesuatu yang keren! ✨
-        </p>
+        <TabsAbout />
       </motion.div>
-    </div>
+    </section>
   );
 }

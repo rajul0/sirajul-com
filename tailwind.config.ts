@@ -7,6 +7,15 @@ export default {
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
+  safelist: [
+    "!bg-blue-500",
+    "!bg-green-600",
+    "!bg-sky-500",
+    "!bg-orange-700",
+    "!bg-black",
+    "border",
+    "dark:border-neutral-700",
+  ],
   prefix: "",
   theme: {
     container: {

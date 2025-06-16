@@ -7,9 +7,9 @@ import {
 } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
-import ProjectCard, { Project } from "./ProjectCard";
-import { collection, getDocs } from "firebase/firestore";
-import { db } from "@/lib/firebase/firebase";
+import { MY_PROJECTS } from "@/data";
+import { Project } from "@/types";
+import ProjectCard from "./ProjectCard";
 
 export default function CarouselProject() {
   const ref = useRef<HTMLUListElement>(null);
@@ -20,23 +20,7 @@ export default function CarouselProject() {
   const [cards, setCards] = useState<Project[]>([]);
 
   useEffect(() => {
-    const fetchProjects = async () => {
-      const querySnapshot = await getDocs(collection(db, "project"));
-      const data = querySnapshot.docs.map((doc, i) => {
-        const d = doc.data();
-        return {
-          id: i + 1,
-          cname: d.cname,
-          title: d.title,
-          description: d.description,
-          image: d.image,
-          techStack: d.tech_stack,
-        } as Project;
-      });
-      setCards(data);
-    };
-
-    fetchProjects();
+    setCards(MY_PROJECTS.slice(0, 6));
   }, []);
 
   useEffect(() => {
@@ -49,7 +33,7 @@ export default function CarouselProject() {
       setAtEnd(el.scrollLeft >= maxScroll - 5);
     };
 
-    handleScroll(); // initial
+    handleScroll();
     el.addEventListener("scroll", handleScroll);
     return () => el.removeEventListener("scroll", handleScroll);
   }, [cards.length]);
@@ -91,7 +75,7 @@ export default function CarouselProject() {
         className="flex overflow-x-auto snap-x touch-y gap-5 px-4 py-5 list-none snap-x snap-mandatory scroll-smooth scrollbar-none scrollbar-hide"
       >
         {cards.map((item) => (
-          <ProjectCard key={item.id} item={item} />
+          <ProjectCard key={item.cname} item={item} />
         ))}
       </motion.ul>
     </div>

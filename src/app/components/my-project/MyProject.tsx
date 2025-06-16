@@ -5,6 +5,7 @@ import { FiArrowRight } from "react-icons/fi";
 import { Button } from "@/components/ui/button";
 import CarouselProject from "./CarouselProject";
 import { useRouter } from "next/navigation";
+import clsx from "clsx";
 
 export default function MyProject() {
   const router = useRouter();
@@ -29,8 +30,7 @@ export default function MyProject() {
               opacity: 1,
               x: 0,
               transition: {
-                duration: 0.8,
-                ease: [0.25, 0.6, 0.3, 1],
+                duration: 1,
               },
             },
           }}
@@ -38,8 +38,8 @@ export default function MyProject() {
           animate={controls}
           className="text-base md:text-xl text-justify"
         >
-          <h1 className="text-2xl md:mb-4 md:text-[30px] font-semibold opacity-90">
-            The Projects that I've made
+          <h1 className="text-xl md:text-2xl md:mb-4 md:text-[30px] font-semibold opacity-90">
+            The Projects I've made
           </h1>
         </motion.div>
         <motion.div
@@ -60,12 +60,13 @@ export default function MyProject() {
           className="text-base md:text-xl text-justify"
         >
           <Button
-            variant="ghost"
+            className={clsx(
+              "flex w-full items-center justify-center transition-all duration-300 opacity-90 dark:bg-white/20 text-zinc-200 hover:scale-105 gap-x-2"
+            )}
             onClick={() => router.push("/projects")}
-            className="hidden md:flex opacity-90 text-base md:text-lg hover:bg-black/5 dark:hover:bg-gray-600/50 "
           >
             <p>View all</p>
-            <FiArrowRight className="text-black dark:text-white" />
+            <FiArrowRight />
           </Button>
         </motion.div>
       </div>

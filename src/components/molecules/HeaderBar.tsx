@@ -9,7 +9,7 @@ export default function HeaderBar() {
       <Link href={"/"} className="flex flex-row items-center">
         <Avatar>
           <AvatarImage
-            src="/images/fotoProfile-2.jpg"
+            src="https://github.com/rajul0.png"
             className="object-cover scale-150"
           />
           <AvatarFallback className="bg-gray-600/50">SI</AvatarFallback>

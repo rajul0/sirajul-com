@@ -1,8 +1,8 @@
 "use client";
 import React, { useRef, useState } from "react";
 import { motion } from "framer-motion";
-import Image from "next/image";
 import { AnimateWords } from "./AnimateWords";
+import { Avatar, AvatarImage } from "@radix-ui/react-avatar";
 
 export default function Hero() {
   const constraintsRef = useRef<any>(null);
@@ -44,14 +44,14 @@ export default function Hero() {
             dragConstraints={{ left: -50, right: 50, top: -50, bottom: 50 }}
             className="absolute w-[230] h-[230] mt-10 mx-auto cursor-pointer"
           >
-            <Image
-              src="/images/fotoProfile-2.jpg"
-              priority
-              fill
-              alt="Sirajul Ilmi"
-              className="object-cover grayscale hover:grayscale-0 md:w-[200px] md:rounded-[32px] lg:w-[245px]"
-              onDragStart={handleDragStart}
-            />
+            <Avatar>
+              <AvatarImage
+                src="https://github.com/rajul0.png"
+                alt="Sirajul Ilmi"
+                className="object-cover grayscale hover:grayscale-0 md:w-[200px] md:rounded-[32px] lg:w-[245px]"
+                onDragStart={handleDragStart}
+              />
+            </Avatar>
           </motion.div>
         </div>
       </div>

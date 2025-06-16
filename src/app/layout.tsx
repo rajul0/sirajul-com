@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Work_Sans } from "next/font/google";
 import { metaData } from "./config";
+
 import * as React from "react";
 import { ThemeSwitch } from "../components/organisms/ThemeSwitch";
 import { ThemeProvider } from "../providers/ThemeProvider";
@@ -9,6 +10,8 @@ import CustomCursor from "../components/organisms/CustomCursor";
 import Navbar from "@/components/organisms/Navbar";
 import HeaderBar from "@/components/molecules/HeaderBar";
 import { PageTransitionLoader } from "@/components/molecules/PageTransitionLoader";
+import { Toaster } from "sonner";
+import { AOSProvider } from "@/providers/AOSProvider";
 const workSans = Work_Sans({
   subsets: ["latin"],
   variable: "--font-work-sans",
@@ -77,8 +80,11 @@ export default function RootLayout({
             <div className="fixed z-50 bottom-4 w-3/5 lg:2/5 md:bottom-auto md:top-4 left-1/2 -translate-x-1/2 ">
               <Navbar />
             </div>
-            <main>{children}</main>
+            <main className="w-full">
+              <AOSProvider>{children}</AOSProvider>
+            </main>
           </CustomCursor>
+          <Toaster richColors />
         </ThemeProvider>
       </body>
     </html>

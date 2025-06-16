@@ -1,9 +1,8 @@
 import Hero from "./components/header-intro/Hero";
 import WhoAmI from "./components/who-am-i/WhoAmI";
 import MyProject from "./components/my-project/MyProject";
-import "locomotive-scroll/dist/locomotive-scroll.css";
 import MyTools from "./components/my-tools/MyTools";
-import Divider from "@/components/atoms/Divider";
+import { Divider } from "@/components/atoms";
 
 export default function Home() {
   return (
@@ -11,9 +10,9 @@ export default function Home() {
       <div className="h-20 md:hidden"></div>
       <Hero />
       <WhoAmI />
-      <Divider />
+      <Divider className="my-4 md:my-5 lg:my-10" />
       <MyProject />
-      <Divider />
+      <Divider className="my-4 md:my-5 lg:my-10" />
       <MyTools />
       <div className="h-[10vh]"></div>
     </div>

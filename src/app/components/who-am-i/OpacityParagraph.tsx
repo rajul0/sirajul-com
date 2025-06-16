@@ -24,7 +24,7 @@ export default function OpacityParagraph({ value }: OpacityParagraphProps) {
   return (
     <>
       <p
-        className="hidden md:flex flex-wrap place-content-between text-lg"
+        className="hidden md:flex flex-wrap place-content-between font-light text-md"
         ref={ref}
       >
         {words.map((word, i) => {
@@ -37,7 +37,7 @@ export default function OpacityParagraph({ value }: OpacityParagraphProps) {
           );
         })}
       </p>
-      <p className="md:hidden text-lg line-clamp-[10]">{value}</p>
+      <p className="md:hidden text-md font-light line-clamp-[10]">{value}</p>
     </>
   );
 }
