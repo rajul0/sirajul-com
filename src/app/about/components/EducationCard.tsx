@@ -1,7 +1,7 @@
 import { BsBuildings as CompanyIcon } from "react-icons/bs";
 
 import { Card } from "@/components/ui/card";
-import Image from "next/image";
+import { Image } from "@/components/molecules";
 import { Education } from "@/types";
 
 const EducationCard = ({
@@ -18,7 +18,13 @@ const EducationCard = ({
   return (
     <Card className="flex items-center gap-5 border px-6 py-4 border-gray-100 dark:border-gray-700">
       {logoUrl ? (
-        <Image src={logoUrl} width={55} height={55} alt={schoolFullName} />
+        <Image
+          src={logoUrl}
+          width={55}
+          height={55}
+          alt={schoolFullName}
+          className="h-14 w-14 rounded bg-neutral-50 p-1 hover:scale-110 hover:bg-transparent"
+        />
       ) : (
         <CompanyIcon size={50} />
       )}
@@ -27,7 +33,6 @@ const EducationCard = ({
         <a
           //   href={link || "#"}
           target="_blank"
-          data-umami-event={`Click Education School: ${schoolFullName}`}
         >
           <h6>{schoolFullName}</h6>
         </a>

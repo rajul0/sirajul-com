@@ -3,9 +3,15 @@ import { useEffect, useRef, useState } from "react";
 import { motion, useAnimation, useInView } from "framer-motion";
 import { FiArrowRight } from "react-icons/fi";
 import { Button } from "@/components/ui/button";
-import CarouselProject from "./CarouselProject";
 import { useRouter } from "next/navigation";
 import clsx from "clsx";
+import dynamic from "next/dynamic";
+import { Skeleton } from "@/components/ui/skeleton";
+
+const CarouselProject = dynamic(() => import("./CarouselProject"), {
+  loading: () => <Skeleton />,
+  ssr: false,
+});
 
 export default function MyProject() {
   const router = useRouter();
@@ -38,7 +44,7 @@ export default function MyProject() {
           animate={controls}
           className="text-base md:text-xl text-justify"
         >
-          <h1 className="text-xl md:text-2xl md:mb-4 md:text-[30px] font-semibold opacity-90">
+          <h1 className="text-xl md:text-2xl md:mb-4 md:text-[30px] font-bold opacity-90">
             The Projects I've made
           </h1>
         </motion.div>

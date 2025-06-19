@@ -33,8 +33,6 @@ export async function sendMessage(
       success: "Your message means a lot. I’ll respond as quickly as I can! 🚀",
     };
   } catch (error) {
-    console.error(error);
-
     return { error: COMMON_MESSAGE.error };
   }
 }

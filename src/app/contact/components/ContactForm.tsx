@@ -18,8 +18,9 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/atoms";
 import { Button } from "@/components/ui/button";
 import clsx from "clsx";
+import { motion } from "framer-motion";
 
-export function ContactForm() {
+export default function ContactForm() {
   const form = useForm<SchemaContact>({
     defaultValues: {
       name: "",
@@ -43,65 +44,88 @@ export function ContactForm() {
   };
 
   return (
-    <Form {...form}>
-      <form
-        className="flex flex-col gap-6"
-        onSubmit={form.handleSubmit(onSubmit)}
-      >
-        <div className="space-y-3">
-          <div className="grid lg:grid-cols-2 gap-3">
+    <motion.div
+      variants={{
+        hidden: { opacity: 0, y: 100 },
+        visible: {
+          opacity: 1,
+          y: 0,
+          transition: {
+            duration: 0.5,
+            delay: 0.3,
+          },
+        },
+      }}
+      initial="hidden"
+      animate="visible"
+      className="mt-10 space-y-2 md:space-y-5"
+    >
+      <h3 className="text-lg font-medium text-zinc-800 dark:text-zinc-200">
+        Or send me a message
+      </h3>
+      <Form {...form}>
+        <form
+          className="flex flex-col gap-6"
+          onSubmit={form.handleSubmit(onSubmit)}
+        >
+          <div className="space-y-3">
+            <div className="grid lg:grid-cols-2 gap-3">
+              <FormField
+                control={form.control}
+                name="name"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Name</FormLabel>
+                    <FormControl>
+                      <Input placeholder="Input your name." {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="email"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Email</FormLabel>
+                    <FormControl>
+                      <Input placeholder="Input your email." {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
             <FormField
               control={form.control}
-              name="name"
+              name="message"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Name</FormLabel>
+                  <FormLabel>Message</FormLabel>
                   <FormControl>
-                    <Input placeholder="Input your name." {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="email"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Email</FormLabel>
-                  <FormControl>
-                    <Input placeholder="Input your email." {...field} />
+                    <Textarea
+                      placeholder="Type your message here."
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
             />
           </div>
-          <FormField
-            control={form.control}
-            name="message"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Message</FormLabel>
-                <FormControl>
-                  <Textarea placeholder="Type your message here." {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-        </div>
 
-        <Button
-          type="submit"
-          className={clsx(
-            "flex justify-center place-self-center w-1/2 md:place-self-end md:w-1/3 bg-neutral-800 py-2.5 hover:scale-[101%] hover:bg-neutral-900 dark:bg-neutral-50 dark:text-neutral-950 hover:dark:bg-neutral-50"
-          )}
-          loading={isSubmitting}
-        >
-          <Send className="size-4 mr-2" /> Send
-        </Button>
-      </form>
-    </Form>
+          <Button
+            type="submit"
+            className={clsx(
+              "flex justify-center place-self-center w-1/2 md:place-self-end md:w-1/3 bg-neutral-800 py-2.5 hover:scale-[101%] hover:bg-neutral-900 dark:bg-neutral-50 dark:text-neutral-950 hover:dark:bg-neutral-50"
+            )}
+            loading={isSubmitting}
+          >
+            <Send className="size-4 mr-2" /> Send
+          </Button>
+        </form>
+      </Form>
+    </motion.div>
   );
 }

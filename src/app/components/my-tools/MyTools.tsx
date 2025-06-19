@@ -1,18 +1,14 @@
 "use client";
-
 import React, { useRef } from "react";
-
-import {
-  motion,
-  useMotionValue,
-  animate,
-  useAnimation,
-  useInView,
-} from "framer-motion";
+import { motion, useAnimation, useInView } from "framer-motion";
 import { useEffect } from "react";
-import { Button } from "@/components/ui/button";
-import { FiArrowRight } from "react-icons/fi";
-import ToolsAnimate from "./ToolsAnimate";
+import { Skeleton } from "@/components/ui/skeleton";
+import dynamic from "next/dynamic";
+
+const ToolsAnimate = dynamic(() => import("./ToolsAnimate"), {
+  loading: () => <Skeleton />,
+  ssr: false,
+});
 
 export default function MyTools() {
   const ref = useRef(null);

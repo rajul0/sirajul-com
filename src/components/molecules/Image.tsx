@@ -35,7 +35,7 @@ export function Image(props: ImageProps) {
         loading="lazy"
         // priority={true}
         quality={100}
-        onLoadingComplete={() => setLoading(false)}
+        onLoad={() => setLoading(false)}
         {...rest}
       />
     </div>

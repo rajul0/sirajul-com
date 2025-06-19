@@ -1,7 +1,8 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import { motion, useTransform, useScroll, MotionValue } from "framer-motion";
+import { motion } from "framer-motion";
 import OpacityParagraph from "./OpacityParagraph";
+import { MY_PROFILE } from "@/data";
 
 export default function WhoAmI() {
   const ref = useRef<HTMLDivElement | null>(null);
@@ -34,7 +35,7 @@ export default function WhoAmI() {
             Who Am I
           </h1>
 
-          <OpacityParagraph value="Hi there 👋, my name is Sirajul Ilmi but you can call me Rajul Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos. Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos." />
+          <OpacityParagraph value={MY_PROFILE.description} />
         </motion.div>
       )}
     </div>

@@ -1,5 +1,5 @@
+"use client";
 import { FaRegArrowAltCircleLeft } from "react-icons/fa";
-
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 

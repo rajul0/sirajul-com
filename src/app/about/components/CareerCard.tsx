@@ -1,3 +1,4 @@
+"use client";
 import { differenceInMonths, differenceInYears, format } from "date-fns";
 import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
@@ -64,10 +65,7 @@ const CareerCard = ({
           <h6>{role}</h6>
           <div className="space-y-1 text-sm text-neutral-600 dark:text-neutral-400">
             <div className="flex flex-col gap-1 md:flex-row md:items-center md:gap-2">
-              <a
-                target="_blank"
-                data-umami-event={`Click Career Company Name: ${companyLabel}`}
-              >
+              <a target="_blank">
                 <span className="cursor-pointer underline-offset-2 hover:text-dark hover:underline hover:dark:text-white">
                   {companyLabel}
                 </span>

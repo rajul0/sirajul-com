@@ -1,11 +1,5 @@
 import { useRef, useEffect } from "react";
-import {
-  motion,
-  MotionValue,
-  progress,
-  useScroll,
-  useTransform,
-} from "framer-motion";
+import { motion, MotionValue, useScroll, useTransform } from "framer-motion";
 
 type OpacityParagraphProps = {
   value: string;
@@ -54,7 +48,9 @@ const Word = ({ children, range, progress }: WordProps) => {
 
   return (
     <span className="relative">
-      <span className="absolute opacity-30">{children}</span>
+      <span className="absolute opacity-30 transition-all duration-300">
+        {children}
+      </span>
       <motion.span
         style={{ opacity }}
         transition={{ delay: 0.1, duration: 1, ease: [0.2, 0.65, 0.3, 0.9] }}

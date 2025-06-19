@@ -1,3 +1,5 @@
+"use client";
+
 import {
   HiOutlineAcademicCap as EducationIcon,
   HiOutlineBookmark as AboutIcon,
@@ -6,10 +8,26 @@ import {
 } from "react-icons/hi";
 
 import { Tabs } from "@/components/organisms";
-import CareerList from "./CareerList";
-import EducationList from "./EducationList";
-import Resume from "./Resume";
-import Story from "./Story";
+import { motion } from "framer-motion";
+import dynamic from "next/dynamic";
+import { TabSkeleton } from "./TabSkeleton";
+
+const Story = dynamic(() => import("./Story"), {
+  ssr: false,
+  loading: () => <TabSkeleton />,
+});
+const Resume = dynamic(() => import("./Resume"), {
+  ssr: false,
+  loading: () => <TabSkeleton />,
+});
+const CareerList = dynamic(() => import("./CareerList"), {
+  ssr: false,
+  loading: () => <TabSkeleton />,
+});
+const EducationList = dynamic(() => import("./EducationList"), {
+  ssr: false,
+  loading: () => <TabSkeleton />,
+});
 
 const About = () => {
   const TABS = [
@@ -46,7 +64,24 @@ const About = () => {
       children: <EducationList />,
     },
   ];
-  return <Tabs tabs={TABS} />;
+  return (
+    <motion.div
+      variants={{
+        hidden: { opacity: 0, y: 100 },
+        visible: {
+          opacity: 1,
+          y: 0,
+          transition: {
+            duration: 0.5,
+          },
+        },
+      }}
+      initial="hidden"
+      animate="visible"
+    >
+      <Tabs tabs={TABS} />
+    </motion.div>
+  );
 };
 
 export default About;

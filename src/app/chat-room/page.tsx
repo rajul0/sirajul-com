@@ -1,24 +1,30 @@
-"use client";
+import { Divider } from "@/components/atoms";
+import { Heading } from "@/components/molecules/Heading";
+import { auth } from "@/auth";
+import Chat from "./components/Chat";
+import { SessionProvider } from "next-auth/react";
+import { Metadata } from "next";
+import { metaData } from "../config";
 
-import { motion } from "framer-motion";
+const PAGE_TITLE = "Chat Room";
+const PAGE_DESCRIPTION =
+  "Drop whatever’s on your mind! Ideas, stories, questions… or just say hi👋";
 
-export default function ChatRoom() {
+export const metadata: Metadata = {
+  title: `${PAGE_TITLE} - ${metaData.name}`,
+  description: PAGE_DESCRIPTION,
+};
+
+export default async function ChatRoom() {
+  const session = await auth();
   return (
-    <div className="flex min-h-screen items-center justify-center  px-4">
-      <motion.div
-        initial={{ opacity: 0, scale: 0.95, y: 20 }}
-        animate={{ opacity: 1, scale: 1, y: 0 }}
-        transition={{ duration: 0.6, ease: [0.25, 0.8, 0.25, 1] }}
-        className="text-center space-y-4 p-8 bg-white/5 backdrop-blur-lg border border-white/10 rounded-xl shadow-lg"
-      >
-        <h1 className="text-3xl md:text-4xl font-bold">
-          🚧 Under Development "Chat Room Page"
-        </h1>
-        <p className="text-sm justify-self-center max-w-lg text-gray-600 dark:text-gray-300 ">
-          Halaman ini sedang dalam tahap pengembangan. Silakan kembali lagi
-          nanti. Kami sedang menyiapkan sesuatu yang keren! ✨
-        </p>
-      </motion.div>
-    </div>
+    <SessionProvider session={session}>
+      <section className="w-full px-5 mb-16 md:px-16 lg:px-32">
+        <div className="h-16"></div>
+        <Heading title={PAGE_TITLE} description={PAGE_DESCRIPTION} />
+        <Divider className="my-4 md:my-5 lg:mt-5 lg:mb-10" />
+        <Chat />
+      </section>
+    </SessionProvider>
   );
 }
