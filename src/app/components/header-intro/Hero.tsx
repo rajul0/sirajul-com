@@ -40,7 +40,8 @@ export default function Hero() {
                 ease: [0.2, 0.65, 0.3, 0.9],
               },
             }}
-            style={{ y }} // gunakan motionValue y
+            style={{ y }}
+            dragSnapToOrigin
             drag
             dragConstraints={{ left: -50, right: 50, top: -50, bottom: 50 }}
             className="absolute w-[230] h-[230] mt-10 mx-auto cursor-pointer"
