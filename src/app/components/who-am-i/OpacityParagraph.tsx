@@ -1,4 +1,4 @@
-import { useRef, useEffect } from "react";
+import { useRef } from "react";
 import { motion, MotionValue, useScroll, useTransform } from "framer-motion";
 
 type OpacityParagraphProps = {

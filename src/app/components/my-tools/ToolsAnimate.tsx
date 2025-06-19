@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, useMotionValue, animate } from "framer-motion";
-import { MY_PROFILE } from "@/data/profile"; // ambil dari MY_PROFILE
+import { MY_PROFILE } from "@/data/profile";
 import SkillCard from "./SkillCard";
 import { Stack } from "@/types";
 

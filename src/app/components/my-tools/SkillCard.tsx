@@ -1,6 +1,6 @@
 type SkillCardProps = {
   title: string;
-  logo?: React.ReactNode; //  icon berbentuk komponen atau gambar URL
+  logo?: React.ReactNode;
 };
 
 export default function SkillCard({ title, logo }: SkillCardProps) {

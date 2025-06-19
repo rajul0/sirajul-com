@@ -1,10 +1,4 @@
-import {
-  animate,
-  motion,
-  MotionValue,
-  useMotionValue,
-  useScroll,
-} from "framer-motion";
+import { animate, motion, useMotionValue, useScroll } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import { MY_PROJECTS } from "@/data";
