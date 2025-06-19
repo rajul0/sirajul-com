@@ -7,7 +7,6 @@ import ProjectCard from "./ProjectCard";
 
 export default function CarouselProject() {
   const ref = useRef<HTMLUListElement>(null);
-  const { scrollXProgress } = useScroll({ container: ref });
   const [atStart, setAtStart] = useState(true);
   const [atEnd, setAtEnd] = useState(false);
   const maskImage = useScrollOverflowMask(atStart, atEnd);

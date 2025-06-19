@@ -46,7 +46,7 @@ export function useMessages() {
         setMessages(sortedMessage);
       }
     });
-  }, [db]);
+  }, []);
 
   return { messages, onSendMessage, onDeleteMessage };
 }

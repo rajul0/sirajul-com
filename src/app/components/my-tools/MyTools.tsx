@@ -41,7 +41,7 @@ export default function MyTools() {
           className="text-base md:text-xl text-justify"
         >
           <h1 className="text-xl md:text-2xl md:mb-4 md:text-[30px] font-bold opacity-90">
-            Tools I've Used
+            Tools I&apos;ve Used
           </h1>
         </motion.div>
       </div>

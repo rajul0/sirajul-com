@@ -39,7 +39,7 @@ export default function OpacityParagraph({ value }: OpacityParagraphProps) {
 type WordProps = {
   range: number[];
   progress: MotionValue<number>;
-  children: String;
+  children: string;
 };
 const Word = ({ children, range, progress }: WordProps) => {
   //

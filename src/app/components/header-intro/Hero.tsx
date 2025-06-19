@@ -5,7 +5,8 @@ import { AnimateWords } from "./AnimateWords";
 import { Avatar, AvatarImage } from "@radix-ui/react-avatar";
 
 export default function Hero() {
-  const constraintsRef = useRef<any>(null);
+  const constraintsRef = useRef<HTMLDivElement | null>(null);
+
   const handleDragStart = (e: React.DragEvent) => {
     e.preventDefault();
   };

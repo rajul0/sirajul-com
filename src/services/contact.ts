@@ -32,7 +32,7 @@ export async function sendMessage(
     return {
       success: "Your message means a lot. I’ll respond as quickly as I can! 🚀",
     };
-  } catch (error) {
+  } catch {
     return { error: COMMON_MESSAGE.error };
   }
 }

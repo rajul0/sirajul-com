@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { motion, useAnimation, useInView } from "framer-motion";
 import { FiArrowRight } from "react-icons/fi";
 import { Button } from "@/components/ui/button";
@@ -45,7 +45,7 @@ export default function MyProject() {
           className="text-base md:text-xl text-justify"
         >
           <h1 className="text-xl md:text-2xl md:mb-4 md:text-[30px] font-bold opacity-90">
-            The Projects I've made
+            The Projects I&apos;ve made
           </h1>
         </motion.div>
         <motion.div
