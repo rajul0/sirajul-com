@@ -16,7 +16,7 @@ export default function CarouselProject() {
   const { scrollXProgress } = useScroll({ container: ref });
   const [atStart, setAtStart] = useState(true);
   const [atEnd, setAtEnd] = useState(false);
-  const maskImage = useScrollOverflowMask(scrollXProgress, atStart, atEnd);
+  const maskImage = useScrollOverflowMask(atStart, atEnd);
   const [cards, setCards] = useState<Project[]>([]);
 
   useEffect(() => {
@@ -82,13 +82,7 @@ export default function CarouselProject() {
   );
 }
 
-function useScrollOverflowMask(
-  scrollXProgress: MotionValue<number>,
-  atStart: boolean,
-  atEnd: boolean
-) {
-  const left = `0%`;
-  const right = `100%`;
+function useScrollOverflowMask(atStart: boolean, atEnd: boolean) {
   const leftInset = `20%`;
   const rightInset = `80%`;
   const transparent = `#0000`;

@@ -12,8 +12,6 @@ const EducationCard = ({
   fromYear,
   endYear,
   address,
-  score,
-  scoreMax,
 }: Education) => {
   return (
     <Card className="flex items-center gap-5 border px-6 py-4 border-gray-100 dark:border-gray-700">

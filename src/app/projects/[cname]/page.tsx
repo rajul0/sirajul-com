@@ -6,6 +6,7 @@ import { Heading } from "@/components/molecules";
 import { Divider } from "@/components/atoms";
 import { CarouselImg } from "@/components/organisms";
 import { Skeleton } from "@/components/ui/skeleton";
+import Image from "next/image";
 import { Project } from "@/types";
 import { MY_PROJECTS } from "@/data";
 import Link from "next/link";
@@ -105,9 +106,11 @@ export default function Page({
               <div className="flex flex-wrap gap-3 place-self-center md:place-self-start ">
                 {dataProject.techStack?.map((tech, i) => (
                   <div key={i} className="relative group">
-                    <img
+                    <Image
                       src={tech.imageUrl}
                       alt={tech.label}
+                      width={20}
+                      height={20}
                       className="w-6 h-6 transition-transform duration-300 transform "
                     />
                     <div className="absolute -top-8 left-1/2 -translate-x-1/2 bg-gray-800 text-white text-xs px-2 py-1 rounded-md opacity-0 group-hover:opacity-100 transition-opacity z-10">

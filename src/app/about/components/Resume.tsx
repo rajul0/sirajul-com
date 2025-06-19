@@ -1,5 +1,3 @@
-import Link from "next/link";
-
 import { DownloadIcon } from "lucide-react";
 import { Button } from "@/components/atoms";
 import clsx from "clsx";

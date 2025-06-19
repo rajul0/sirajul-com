@@ -22,9 +22,11 @@ export default function ProjectCard({ item }: ProjectCardProps) {
         className="group relative flex-none w-[250px] rounded-xl overflow-hidden bg-transparent text-white snap-center shadow-lg hover:scale-105 transition-transform duration-300 ease-in-out  transition-shadow"
       >
         <div className="min-h-fit bg-transparent from-white via-gray-100 to-white flex items-center justify-center">
-          <img
+          <Image
             src={item.image}
             alt={item.title}
+            width={1000}
+            height={1000}
             className="w-full h-[230px] object-cover group-hover:blur-sm transition-all duration-300"
           />
         </div>
