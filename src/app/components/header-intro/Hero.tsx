@@ -1,6 +1,6 @@
 "use client";
 import React, { useRef } from "react";
-import { motion } from "framer-motion";
+import { motion, useMotionValue } from "framer-motion";
 import { AnimateWords } from "./AnimateWords";
 import { Avatar, AvatarImage } from "@radix-ui/react-avatar";
 
@@ -10,6 +10,7 @@ export default function Hero() {
   const handleDragStart = (e: React.DragEvent) => {
     e.preventDefault();
   };
+  const y = useMotionValue(0);
 
   return (
     <motion.section
@@ -29,19 +30,18 @@ export default function Hero() {
           />
 
           <motion.div
-            initial={{ y: 50, opacity: 0, scale: 0.8 }}
+            initial={{ opacity: 0, scale: 0.8, y: 50 }}
             animate={{
               opacity: 1,
               scale: 1,
-              y: `0em`,
               transition: {
                 delay: 1,
                 duration: 1,
                 ease: [0.2, 0.65, 0.3, 0.9],
               },
             }}
+            style={{ y }} // gunakan motionValue y
             drag
-            dragSnapToOrigin
             dragConstraints={{ left: -50, right: 50, top: -50, bottom: 50 }}
             className="absolute w-[230] h-[230] mt-10 mx-auto cursor-pointer"
           >
