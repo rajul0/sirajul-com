@@ -5,6 +5,9 @@ import { Github, Linkedin } from "lucide-react";
 export const MY_PROFILE: Profile = {
   name: "Sirajul Ilmi",
   title: "Frontend Software Engineering",
+  email: "sirajulilmi@gmail.com",
+  linkedin: "https://www.linkedin.com/in/rajul0",
+  github: "https://github.com/rajul0",
   avatar: "https://github.com/rajul0.png",
   address: "Banda Aceh, Indonesia",
   status: "Freelancer",
@@ -26,4 +29,5 @@ export const MY_PROFILE: Profile = {
     },
   ],
   techStack: STACKS,
+  hobbies: ["Reading books", "sipping coffee", "writting code"],
 };

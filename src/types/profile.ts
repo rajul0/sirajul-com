@@ -3,6 +3,9 @@ import { LucideIcon } from "lucide-react";
 export type Profile = {
   name: string;
   title: string;
+  email: string;
+  linkedin: string;
+  github: string;
   avatar: string;
   address: string;
   status: string;
@@ -12,6 +15,7 @@ export type Profile = {
   description: string;
   socials: { label: string; href: string; icon: LucideIcon }[];
   techStack: Stack[];
+  hobbies: string[];
   funNote?: string;
 };
 
@@ -81,7 +85,9 @@ export type AvailableStack =
   | "Tkinter"
   | "Python"
   | "C"
-  | "Postman";
+  | "Postman"
+  | "Postgresql"
+  | "Prisma";
 
 export type Stack = {
   label: AvailableStack;

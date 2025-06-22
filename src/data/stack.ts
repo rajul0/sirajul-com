@@ -29,6 +29,8 @@ export const STACKS: Stack[] = [
   { label: "Python", imageUrl: "/svgs/stacks/python.svg" },
   { label: "C", imageUrl: "/svgs/stacks/c.svg" },
   { label: "Postman", imageUrl: "/svgs/stacks/postman.svg" },
+  { label: "Postgresql", imageUrl: "/svgs/stacks/postgresql.svg" },
+  { label: "Prisma", imageUrl: "/svgs/stacks/prisma.svg" },
 ];
 
 export const getStack = (key: AvailableStack) =>

@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import clsx from "clsx";
 import dynamic from "next/dynamic";
 import { Skeleton } from "@/components/ui/skeleton";
+import { MY_PROJECTS } from "@/data";
 
 const CarouselProject = dynamic(() => import("./CarouselProject"), {
   loading: () => <Skeleton />,
@@ -48,33 +49,35 @@ export default function MyProject() {
             The Projects I&apos;ve made
           </h1>
         </motion.div>
-        <motion.div
-          ref={ref}
-          variants={{
-            hidden: { opacity: 0, x: 80 },
-            visible: {
-              opacity: 1,
-              x: 0,
-              transition: {
-                duration: 0.8,
-                ease: [0.25, 0.6, 0.3, 1],
+        {MY_PROJECTS.length > 6 && (
+          <motion.div
+            ref={ref}
+            variants={{
+              hidden: { opacity: 0, x: 80 },
+              visible: {
+                opacity: 1,
+                x: 0,
+                transition: {
+                  duration: 0.8,
+                  ease: [0.25, 0.6, 0.3, 1],
+                },
               },
-            },
-          }}
-          initial="hidden"
-          animate={controls}
-          className="text-base md:text-xl text-justify"
-        >
-          <Button
-            className={clsx(
-              "flex w-full items-center justify-center transition-all duration-300 opacity-90 dark:bg-white/20 text-zinc-200 hover:scale-105 gap-x-2"
-            )}
-            onClick={() => router.push("/projects")}
+            }}
+            initial="hidden"
+            animate={controls}
+            className="text-base md:text-xl text-justify"
           >
-            <p>View all</p>
-            <FiArrowRight />
-          </Button>
-        </motion.div>
+            <Button
+              className={clsx(
+                "flex w-full items-center justify-center transition-all duration-300 opacity-90 dark:bg-white/20 text-zinc-200 hover:scale-105 gap-x-2"
+              )}
+              onClick={() => router.push("/projects")}
+            >
+              <p>View all</p>
+              <FiArrowRight />
+            </Button>
+          </motion.div>
+        )}
       </div>
       <motion.div
         ref={ref}

@@ -63,22 +63,6 @@ export default function Navbar() {
         </NavigationMenuItem>
         <NavigationMenuItem
           className={`py-2 md:py-1 btn-navbar dark:btn-navbar-dark  ${
-            pathname === "/contact"
-              ? "btn-navbar-selected dark:btn-navbar-dark-selected"
-              : ""
-          }`}
-        >
-          <Link href="/contact" legacyBehavior passHref>
-            <NavigationMenuLink
-              className={`flex flex-row ${navigationMenuTriggerStyle()}`}
-            >
-              <FiPhone className="place-self-center text-[20px] md:text-[16px] mr-0 md:mr-2 rotate-animation" />
-              <p className="hidden md:block">Contact</p>
-            </NavigationMenuLink>
-          </Link>
-        </NavigationMenuItem>
-        <NavigationMenuItem
-          className={`py-2 md:py-1 btn-navbar dark:btn-navbar-dark  ${
             pathname === "/about"
               ? "btn-navbar-selected dark:btn-navbar-dark-selected"
               : ""
@@ -93,6 +77,23 @@ export default function Navbar() {
             </NavigationMenuLink>
           </Link>
         </NavigationMenuItem>
+        <NavigationMenuItem
+          className={`py-2 md:py-1 btn-navbar dark:btn-navbar-dark  ${
+            pathname === "/contact"
+              ? "btn-navbar-selected dark:btn-navbar-dark-selected"
+              : ""
+          }`}
+        >
+          <Link href="/contact" legacyBehavior passHref>
+            <NavigationMenuLink
+              className={`flex flex-row ${navigationMenuTriggerStyle()}`}
+            >
+              <FiPhone className="place-self-center text-[20px] md:text-[16px] mr-0 md:mr-2 rotate-animation" />
+              <p className="hidden md:block">Contact</p>
+            </NavigationMenuLink>
+          </Link>
+        </NavigationMenuItem>
+
         <NavigationMenuItem
           className={`py-2 md:py-1 btn-navbar dark:btn-navbar-dark  ${
             pathname === "/chat-room"
