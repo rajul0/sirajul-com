@@ -1,36 +1,69 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🌐 Personal Portfolio Website
 
-## Getting Started
+This is my personal web portfolio project built using modern technologies such as **Next.js**, **TypeScript**, **TailwindCSS**, **Prisma**, **PostgreSQL**, **Firebase**, and **shadcn/ui** components.
 
-First, run the development server:
+---
+
+## 🚀 Tech Stack
+
+- ⚡ **Next.js** - React framework for SSR & SSG
+- 🟦 **TypeScript** - Strongly-typed JavaScript
+- 🎨 **TailwindCSS** - Utility-first CSS framework
+- 🛠 **shadcn/ui** - Headless UI components powered by Radix & Tailwind
+- 🗄️ **PostgreSQL** - Saving data for User auth
+- 🔬 **Prisma ORM** - Database toolkit and ORM for PostgreSQL
+- 🔥 **Firebase** - Realtime Database for realtime chat feature
+
+---
+
+## 📦 Features
+
+1. **Firebase Realtime Database** is used to store live chat messages, supporting the Chat Room feature on this portfolio website.
+2. **NextAuth** with **Prisma Adapter** is implemented for secure authentication, supporting login with Google and GitHub.
+3. The website is fully responsive on both mobile and desktop, built with **shadcn/ui** and **TailwindCSS**.
+4. And account management using **PostgreSQL** and **Prisma**, with structured models for handling user and authentication data.
+
+---
+
+## ⚙️ Getting Started
+
+### 1. Clone the Project
+
+```bash
+git clone https://github.com/username/project-name.git
+cd project-name
+```
+
+### 2. Install Dependencies
+
+```bash
+npm install
+# or
+yarn install
+```
+
+### 3. Configure Environment Variables
+
+### 4. Prisma Setup
+
+```bash
+npx prisma generate
+```
+
+### 5. Run the Development Server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🌍 Deployment
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### This project can be easily deployed to:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Vercel
+- Netlify
+- Other platforms of your choice
 
-## Learn More
+## 📃 License
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- This project is open-source and free to modify for personal use.
