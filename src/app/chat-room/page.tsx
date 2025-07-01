@@ -5,7 +5,6 @@ import Chat from "./components/Chat";
 import { SessionProvider } from "next-auth/react";
 import { Metadata } from "next";
 import { metaData } from "../config";
-import { NextSeo } from "next-seo";
 
 const PAGE_TITLE = "Chat Room";
 const PAGE_DESCRIPTION =
