@@ -11,6 +11,7 @@ import HeaderBar from "@/components/molecules/HeaderBar";
 import { PageTransitionLoader } from "@/components/molecules/PageTransitionLoader";
 import { Toaster } from "sonner";
 import { AOSProvider } from "@/providers/AOSProvider";
+
 const workSans = Work_Sans({
   subsets: ["latin"],
   variable: "--font-work-sans",
@@ -21,6 +22,7 @@ export const metadata: Metadata = {
   title: "Sirajul Ilmi - Portfolio",
   description: "My personal portfolio website.",
 };
+
 export default function RootLayout({
   children,
 }: {
